@@ -17,6 +17,7 @@ async function getNewsList() {
             let filteredNews = data.filter(item => new Date(item.date) <= today);
             filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
             return filteredNews;
+            console.log(filteredNews);
         });
     // ...existing code...
 }
