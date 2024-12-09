@@ -17,6 +17,7 @@ function getNewsList() {
             
             for (let item of filteredNews) {
                 item.content = getSingleNews(item.file);
+                console.log(item.content);
             }
 
             fillNewsElement(filteredNews);
