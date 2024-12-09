@@ -4,6 +4,7 @@ var converter = new showdown.Converter();
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("current-time").innerHTML = new Date().toLocaleString('de-DE');
+    getNews();
 });
 
 function getNews() {
