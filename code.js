@@ -31,6 +31,7 @@ function getSingleNews(filename) {
     fetch("news/" + filename)
         .then(response => response.text())
         .then(text => {
+            console.log(text);
             return text;    
         });
 }
