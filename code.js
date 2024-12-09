@@ -23,6 +23,9 @@ async function getNewsList() {
 }
 
 async function processNews(filteredNews) {
+    
+    console.log("In der Funktion processNews:");
+    console.log(filteredNews);
 
     for (let item of filteredNews) {
         item.content = await getSingleNews(item.file);
