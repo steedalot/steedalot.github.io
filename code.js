@@ -5,6 +5,8 @@ var converter = new showdown.Converter();
 document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById("current-time").innerHTML = new Date().toLocaleString('de-DE');
     let filteredNews = await getNewsList();
+    console.log("Im Eventlistener");
+    console.log(filteredNews);
     processNews(filteredNews);
 
 });
