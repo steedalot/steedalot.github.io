@@ -2,29 +2,33 @@ const newsFile = "news.json";
 
 var converter = new showdown.Converter();
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById("current-time").innerHTML = new Date().toLocaleString('de-DE');
-    getNewsList();
+    let filteredNews = await getNewsList();
+    processNews(filteredNews);
+
 });
 
 async function getNewsList() {
     fetch(newsFile)
         .then(response => response.json())
-        .then(async data => {
+        .then(data => {
             const today = new Date();
             let filteredNews = data.filter(item => new Date(item.date) <= today);
             filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            for (let item of filteredNews) {
-                item.content = await getSingleNews(item.file);
-                console.log(item.content);
-            }
-
-            fillNewsElement(filteredNews);
-
-
+            return filteredNews;
         });
     // ...existing code...
+}
+
+async function processNews(filteredNews) {
+
+    for (let item of filteredNews) {
+        item.content = await getSingleNews(item.file);
+        console.log(item.content);
+    }
+
+    fillNewsElement(filteredNews);
 }
 
 async function getSingleNews(filename) {
