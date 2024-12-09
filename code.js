@@ -16,7 +16,7 @@ function getNewsList() {
             filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
             
             for (let item of filteredNews) {
-                item.content = getSingleNews(item.filename);
+                item.content = getSingleNews(item.file);
             }
 
             fillNewsElement(filteredNews);
