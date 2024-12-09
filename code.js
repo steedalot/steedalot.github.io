@@ -12,15 +12,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 async function getNewsList() {
-    fetch(newsFile)
-        .then(response => response.json())
-        .then(data => {
-            const today = new Date();
-            let filteredNews = data.filter(item => new Date(item.date) <= today);
-            filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-            console.log(filteredNews);
-            return filteredNews;
-        });
+    const response = await fetch(newsFile);
+    const data = await response.json();
+    const today = new Date();
+    let filteredNews = data.filter(item => new Date(item.date) <= today);
+    filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+    console.log(filteredNews);
+    return filteredNews;
     // ...existing code...
 }
 
