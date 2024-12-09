@@ -52,7 +52,7 @@ function fillNewsElement(news) {
         newsItem.className = 'news-item';
         newsItem.innerHTML = `
             <div>${markdownToHtml(item.content)}</div>
-            <time "style="font-weight: normal">${new Date(item.date).toLocaleDateString('de-DE')}</time>
+            <time "style=font-weight: normal">${new Date(item.date).toLocaleDateString('de-DE')}</time>
         `;
         column.appendChild(newsItem);
     });
