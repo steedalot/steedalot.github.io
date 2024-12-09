@@ -1,2 +1,2 @@
 # steedalot.github.io
-Testseite für ki-news.schule
+Repository für die Inhalte auf ki-news.schule
