@@ -36,15 +36,11 @@ async function processNews(filteredNews) {
 }
 
 async function getSingleNews(filename) {
-    fetch("news/" + filename)
-        .then(response => response.text())
-        .then(text => {
-            console.log(text);
-            return text;    
-        });
+    const response = await fetch("news/" + filename);
+    const text = await response.text();
+    console.log(text);
+    return text;
 }
-
-
 
 function fillNewsElement(news) {
     const columns = [
