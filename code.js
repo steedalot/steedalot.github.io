@@ -51,8 +51,8 @@ function fillNewsElement(news) {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
         newsItem.innerHTML = `
-            <time>${new Date(item.date).toLocaleDateString('de-DE')}</time>
             <div>${markdownToHtml(item.content)}</div>
+            <time "style="font-weight: normal">${new Date(item.date).toLocaleDateString('de-DE')}</time>
         `;
         column.appendChild(newsItem);
     });
