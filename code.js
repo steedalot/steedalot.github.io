@@ -5,8 +5,6 @@ var converter = new showdown.Converter();
 document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById("current-time").innerHTML = new Date().toLocaleString('de-DE');
     let filteredNews = await getNewsList();
-    console.log("Im Eventlistener");
-    console.log(filteredNews);
     processNews(filteredNews);
 
 });
@@ -17,18 +15,15 @@ async function getNewsList() {
     const today = new Date();
     let filteredNews = data.filter(item => new Date(item.date) <= today);
     filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-    console.log(filteredNews);
     return filteredNews;
     // ...existing code...
 }
 
 async function processNews(filteredNews) {
-    
-    console.log("In der Funktion processNews:");
-    console.log(filteredNews);
 
     for (let item of filteredNews) {
         item.content = await getSingleNews(item.file);
+        console.log("Content of " + item.file + " is:");
         console.log(item.content);
     }
 
