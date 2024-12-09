@@ -4,23 +4,36 @@ var converter = new showdown.Converter();
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("current-time").innerHTML = new Date().toLocaleString('de-DE');
-    getNews();
+    getNewsList();
 });
 
-function getNews() {
+function getNewsList() {
     fetch(newsFile)
         .then(response => response.json())
         .then(data => {
             const today = new Date();
-            const filteredNews = data.filter(item => new Date(item.date) <= today);
+            let filteredNews = data.filter(item => new Date(item.date) <= today);
             filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
             
+            for (let item of filteredNews) {
+                item.content = getSingleNews(item.filename);
+            }
+
             fillNewsElement(filteredNews);
 
 
         });
     // ...existing code...
 }
+
+function getSingleNews(filename) {
+    fetch("news/" + filename)
+        .then(response => response.text())
+        .then(text => {
+            return text;    
+        });
+}
+
 
 
 function fillNewsElement(news) {
