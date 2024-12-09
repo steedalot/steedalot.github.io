@@ -7,16 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
     getNewsList();
 });
 
-function getNewsList() {
+async function getNewsList() {
     fetch(newsFile)
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
             const today = new Date();
             let filteredNews = data.filter(item => new Date(item.date) <= today);
             filteredNews.sort((a, b) => new Date(b.date) - new Date(a.date));
             
             for (let item of filteredNews) {
-                item.content = getSingleNews(item.file);
+                item.content = await getSingleNews(item.file);
                 console.log(item.content);
             }
 
@@ -27,7 +27,7 @@ function getNewsList() {
     // ...existing code...
 }
 
-function getSingleNews(filename) {
+async function getSingleNews(filename) {
     fetch("news/" + filename)
         .then(response => response.text())
         .then(text => {
